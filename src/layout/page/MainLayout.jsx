@@ -15,18 +15,8 @@ const MainLayout = ({ children }) => {
   return (
     <div className={"main-layout"}>
       <Header />
-      <div className={"main-layout-in"}>
-        <aside style={{width: wd1}}>
-          <div className={"w-f d-flex f-col"}>
-          {gstate.applications[0].pages.map((p, i) => {
-            return <Button key={i} variant="text" color="primary" onClick={() => n(`/${gstate.applications[0].path}/${p.path}`)}>
-              {p.label}
-            </Button>
-          })}
-          </div>
-        </aside>
-        <main style={{width: wd2}}> {children} </main>
-        <aside style={{width: wdt3}}>one</aside>
+      <div className="main-layout-in">
+        <main>{children}</main>
       </div>
     </div>
   );

@@ -14,9 +14,9 @@ export const ContextProvider = ({children}) => {
 
 
   if(loading) return <p>loading...</p>
-  if(!gstate && error && error.status === 401) return <div className="AppWrapper" style={createStyle(theme?.css)}><Login /></div>
-  if(!gstate) return <p>error...{JSON.stringify(error)}</p>
-  if(error) return <p>error...</p>
+  // if(!gstate && error && error.status === 401) return <div className="AppWrapper" style={createStyle(theme?.css)}><Login /></div>
+  // if(!gstate) return <p>error...{JSON.stringify(error)}</p>
+  // if(error) return <p>error...</p>
   return (
     <mainContext.Provider value={{ theme, gstate, setGstate }}>
       <ThemeProvider theme={createTheme(theme.mui)}>
