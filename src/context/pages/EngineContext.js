@@ -5,11 +5,11 @@ import EngineLayout from "../../layout/page/EngineLayout";
 const engineContext = createContext();
 
 export const EngineContextProvider = ({children, application}) => {
-  const [state, setState] = useState({title: "asdas 123123d"});
+  const [state, setState] = useState([]);
   const [questions, setQuestions] = useState([]);
 
   return (
-    <engineContext.Provider value={{ state, questions }}>
+    <engineContext.Provider value={{ state, questions,setState,setQuestions }}>
       <EngineLayout>
         {children}
       </EngineLayout>

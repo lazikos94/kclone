@@ -12,6 +12,16 @@ import { SolpageContextProvider } from "./context/pages/SolpageContext";
 import Solpage from "./pages/primary/Solpage";
 import { EngineContextProvider } from "./context/pages/EngineContext";
 import EnginePage from "./pages/EnginePage";
+import { LoginContextProvider } from "./context/pages/AdminLoginContext";
+import AdminLogin from './pages/AdminLogin';
+import { RegisterContextProvider } from "./context/pages/AdminRegisterContext";
+import AdminRegister from './pages/AdminRegister';
+import {CreateContextProvider} from "./context/pages/CreateGameContext";
+import CreateGamePage from "./pages/CreateGamePage";
+import {LandingPageContextProvider} from "./context/pages/LandingPageContext";
+import LandingPage from './pages/LandingPage';
+import {MyQContextProvider} from './context/pages/MyQContext';
+import MyQuestionsPage from './pages/MyQuestionsPage';
 
 
 function App() {
@@ -30,8 +40,61 @@ function App() {
             </MainLayout>
           }
         />
+        <Route
+          path={"login"}
+          element={
+            <MainLayout>
+              <LoginContextProvider>
+                <AdminLogin/>
+              </LoginContextProvider>
+            </MainLayout>
+          }
+        />
+         <Route
+          path={"register"}
+          element={
+            <MainLayout>
+              <RegisterContextProvider>
+                <AdminRegister/>
+              </RegisterContextProvider>
+            </MainLayout>
+          }
+        />
+        <Route
+          path={"create-game"}
+          element={
+            <MainLayout>
+              <CreateContextProvider>
+                <CreateGamePage/>
+              </CreateContextProvider>
+            </MainLayout>
+          }
+        />
+        <Route
+          path={"questionaires"}
+          element={
+            <MainLayout>
+              <MyQContextProvider>
+                <MyQuestionsPage/>
+              </MyQContextProvider>
+            </MainLayout>
+          }
+        />
       </Route>
-      <Route path={"/*"} element={<div>global not found</div>} />
+      <Route exact path={"/"} element={ <MainLayout>
+              <LandingPageContextProvider>
+                <LandingPage/>
+              </LandingPageContextProvider>
+            </MainLayout>}>
+        <Route path={'homepage'} element={
+            <MainLayout>
+              <LandingPageContextProvider>
+                <LandingPage/>
+              </LandingPageContextProvider>
+            </MainLayout>}
+            />
+      </Route>
+      <Route path={"/*"} element={<div>Not Found</div>}/>
     </Routes>
   );
 }
