@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography'
 import { TextField, Button } from '@mui/material';
 import useEngine from '../../context/pages/EngineContext';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Header = () => {
   const {state, questions, setState, setQuestions} = useEngine();
@@ -15,18 +16,22 @@ const Header = () => {
     navigate(path)
   }
 
-  const SaveQuestionaire =(e)=>{
+  const SaveQuestionaire = async(e)=>{
    e.preventDefault()
-    console.log("here")
 
-    setState(pr=>{
-      return[{title,questions}]})
-    console.log(state)
+    setState(pr=>{return[{title,questions}]})
+
+    const headers = { 
+      'Content-Type': 'application/json',
+    };
+
+    const res = await axios.post('http://127.0.0.1:8000/api/v1/admin/questionnaire/post',{'title':title,'questions':questions},{headers})
+
+   
   }
 
   const ChangeTitle = (e)=>{
     setTitle({[e.target.name]:e.target.value})
-    console.log(title)
   }
 
 

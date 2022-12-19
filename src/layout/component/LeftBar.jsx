@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import useEngine from '../../context/pages/EngineContext';
-function LeftBar({width, AddQuestion,EditQuestion}) {
+function LeftBar({width, AddQuestion,EditQuestion,UpdateQuestion , questionIndex, setQuestionIndex}) {
   const {state, questions, setState, setQuestions} = useEngine();
 
 
@@ -11,13 +11,12 @@ function LeftBar({width, AddQuestion,EditQuestion}) {
       <Button type='submit' onClick={AddQuestion} variant='outlined'>Add Question</Button>
       {questions.length  === 0 ? <div >No questions</div>:
         questions.map((q, i) => 
-        <div key={i} onClick={()=>EditQuestion(q,i)}  style={{backgroundColor:"#EAF4FC",width:'60%',height:'auto',maxHeight:'20%',margin:'5px',overflow:'auto'}}>
+        <div key={i} onClick={()=>{
+          EditQuestion(q,i);
+          setQuestionIndex(i);
+        }}  style={{backgroundColor: i === questionIndex ? "red": "#EAF4FC",width:'60%',height:'auto',maxHeight:'20%',margin:'5px',overflow:'auto'}}>
           <span>{i}</span>
            <span>{q.currentQuestionInfo.title}</span>
-          {/*<div className='d-flex'> 
-         { q.currentQuestionAnswers.map((q,i)=>
-          <span key={i}>{i}. {q.label}</span>
-         )}</div> */}
         </div>)
       }
     </div>

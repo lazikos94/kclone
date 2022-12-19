@@ -1,8 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { Button, IconButton, TextField, FormControlLabel, Checkbox} from '@mui/material';
 import useRegister from '../context/pages/AdminRegisterContext';
+import useMain from '../context/main';
+import axios from 'axios'
+
 const AdminRegister = () => {
     const {state,setState} = useRegister();
+    const {globalState,setGlobalState} = useMain();
+
     const w2 = "calc(100vw - 570px)";
     const ChangeState =(e)=>{
         setState(pr=>{
@@ -10,9 +15,19 @@ const AdminRegister = () => {
         })
     }
 
-    const SubmitRegister =(e)=>{
+    const SubmitRegister =async (e)=>{
         e.preventDefault();
         console.log(state)
+
+        const headers = { 
+            'Content-Type': 'application/json',
+        };
+
+
+        const res = await axios.post('http://127.0.0.1:8000/api/v1/auth/jwt-auth/register',state,{headers})
+
+        console.log(res.data)
+        
     }
 
     return ( <div className="d-flex j-c-center a-i-start bg0" style={{height: "calc(100vh - var(--height-4))", overflowY: "auto"}}>

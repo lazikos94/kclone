@@ -7,9 +7,10 @@ const engineContext = createContext();
 export const EngineContextProvider = ({children, application}) => {
   const [state, setState] = useState([]);
   const [questions, setQuestions] = useState([]);
+  const [questionIndex,setQuestionIndex] = useState(0);
 
   return (
-    <engineContext.Provider value={{ state, questions,setState,setQuestions }}>
+    <engineContext.Provider value={{ state, questions,setState,setQuestions, questionIndex, setQuestionIndex }}>
       <EngineLayout>
         {children}
       </EngineLayout>

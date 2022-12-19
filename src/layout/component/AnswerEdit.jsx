@@ -2,12 +2,15 @@ import React from 'react';
 import { Button, IconButton, TextField, FormControlLabel, Checkbox } from '@mui/material';
 
 
-function AnswerEdit({ answer, index, ChangeAnswerByIndex, RemoveAnswerByIndex }) {
+function AnswerEdit({ answer, index, ChangeAnswerByIndex, RemoveAnswerByIndex,ChangeBoolByIndex }) {
 
   const handleChangeString = (e) => {
     ChangeAnswerByIndex(index, { ...answer, [e.target.name]: e.target.value })
   }
-
+  const handleChangeBool = (e)=>{
+    console.log(e.target.checked)
+    ChangeBoolByIndex(index,{...answer,[e.target.name]:e.target.checked})
+  }
   const invert = require('invert-color');
   return (
         <div div style={{width: "46%", height: "100%", boxShadow: "1px 1px 6.9px 0.14px rgba(0,0,0,0.14)",borderRadius:'5px'}} className="bg-1 d-flex j-c-between m-3">
@@ -23,9 +26,10 @@ function AnswerEdit({ answer, index, ChangeAnswerByIndex, RemoveAnswerByIndex })
                 label="Correct"
                 control={
                   <Checkbox
-                    onChange={() => {
-                      
-                    }}
+                  name='correct'
+                    defaultChecked={false}
+                    checked={answer.correct}
+                    onChange={handleChangeBool}
                     color="primary"
                   />
                 }
